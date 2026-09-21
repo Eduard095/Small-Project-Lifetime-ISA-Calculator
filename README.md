@@ -3,7 +3,8 @@ A small Lifetime ISA calculator project to calculate how long it will take to re
 
 How it works
 
-Give how much you have in your current savings account
-Give how much you are willing to contribute every month until you hit your goal
-Give your goal to reach
+1. Give how much you have in your current savings account
+2. Give how much you are willing to contribute every month until you hit your goal
+3. Give your goal to reach
+   
 Once these are given the number of months and years will be given
