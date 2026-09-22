@@ -1,0 +1,21 @@
+Lifetime ISA
+
+Software Development Life Cycle (SDLC)
+1. Planning - establish project goals, scopes, risks and MVP
+2. Requirement Analysis - Gather detailed functional and non-functional requirements collaboratively
+3. Design - Create a system architecture, workflows and UI/UX plans
+4. Developent (Coding) - Start building the software using chosen tech stack
+5. Testing - Run multiple tests to ensure quality and performance
+6. Deployment - Replase software with miminal downtime using best practices
+7.  Monitoring - Monitor, fix issues , and improve based on feedback
+
+
+Functions
+
+def saving account
+# the money will be kept and increase with interests
+
+def MoveMoney
+#an action for the money to move to the savings account
+
+def 
