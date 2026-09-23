@@ -10,12 +10,21 @@ Software Development Life Cycle (SDLC)
 7.  Monitoring - Monitor, fix issues , and improve based on feedback
 
 
-Functions
+Main Functions
+# once users enter their values, this func will store them into variables in the main func
+def user_input 
 
-def saving account
-# the money will be kept and increase with interests
+# all calculations needed will be called here and then return the result
+def calculation
 
-def MoveMoney
-#an action for the money to move to the savings account
+# what calculations?
+# Annual Equivalent Rate (AER) - basically the compounding interest based on contribution
+# 25% Goverment Boost interest - month/annual accumulated boost based on contribution
 
-def 
+
+# all logic flow will be here
+def main
+
+
+
+

@@ -1,10 +1,11 @@
 # Small-Project-Lifetime-ISA-Calculator
-A small Lifetime ISA calculator project to calculate how long it will take to reach your goal based on the initial savings, monthly contribution and savings goal
+If you're a first time buyer for a house, this calculator is for you!
 
-How it works
+This is a small Lifetime ISA calculator project to calculate how much your LISA could be worth based
 
-1. Give how much you have in your current savings account
-2. Give how much you are willing to contribute every month until you hit your goal
-3. Give your goal to reach
+1. How much do you want save each month
+2. In how many years do you want to buy your first home
    
-Once these are given the number of months and years will be given
+Once these are given, you will have a rough estimate of how much you will have by the end of however many years you planned to save.
+
+FYI for now this only has the option to save monthly
