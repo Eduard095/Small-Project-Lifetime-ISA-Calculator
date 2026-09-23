@@ -8,4 +8,6 @@ This is a small Lifetime ISA calculator project to calculate how much your LISA 
    
 Once these are given, you will have a rough estimate of how much you will have by the end of however many years you planned to save.
 
+* this is a illustrative estimate
+
 FYI for now this only has the option to save monthly

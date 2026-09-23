@@ -28,3 +28,13 @@ def main
 
 
 
+# Expected outcome
+£50 contribution
+for 1 year
+boost for one year is 0.045 + 0.25
+
+![alt text](image.png)
+
+This image shows my own calcualtions for a 1 year plan of an account that contributes £50/month
+This table was checked against Nottingham Building Society and it comes to accurate 0.01% difference which is good.
+From this my requirement analysis have been changed, giving me a much more clear planning strategy.

@@ -1,37 +1,50 @@
 #index.py
+import math
+
 
 def user_input():
     contribution = float(input("1. How much will you be contributing monthly?: "))
     years = int(input("2. In how many years do you want to buy your first home?: "))
     return contribution, years
 
-def AER_and_IBR(contribution):
-    return contribution * 0.045
+def first_year_monthly_AER(contribution):
+    #Geometric mean, because interest goews exponentially, so we must use 
+    #geometric breakdown, which extracts the fractional power (1/12)
+    x = 1 + (0.0445)
+    first_year_AER_rate = pow(x, 1/12) - 1
+    return contribution * first_year_AER_rate
 
-def AER(contribution):
-    return contribution * 0.028
+def AER_after_first_year(contribution):
+    x = 1 + (0.028)
+    after_first_year_AER_rate = pow(x, 1/12) - 1
+    return contribution * after_first_year_AER_rate
 
 def gov_boost(contribution):
     return contribution * 0.25
 
 
 def monthly_calculations(contribution, years):
-    account = 0
-    count = years * 12 - 1
+    balance = 0
+    count = years * 12
+    
     for x in range(count):
-        account += contribution
-        if x < 13:
-            x1 = AER_and_IBR(account)
-            x3 = gov_boost(account)
-            total_boost = x1 + x3
-            account += total_boost
-            print(account)
-        if x > 12:
-            x2 = AER(contribution)
-            x3 = gov_boost(contribution)
-            contribution = contribution + x2 + x3 
+        balance += contribution
+        interest = float(first_year_monthly_AER(balance))
+        boost = float(gov_boost(contribution))
+        
+        if x < 1:
+            balance += interest
+            balance += boost
+        elif x > 0 and x < 12:
+            balance += interest                  
+            balance += boost
+        elif x >= 12:
+            after_interest = float(AER_after_first_year(balance))
+            balance+=after_interest
+            balance+= boost
 
-    return print(f"{account:.2f}")
+    balance -= boost
+    return  print("Final Balance", f"{balance:.2f}")
 
 def main():
     contribution, years = user_input()
