@@ -1,6 +1,6 @@
 #testing zone
 import pytest
-from index import user_input, first_year_monthly_AER, AER_after_first_year, monthly_calculations, main
+from backend.index import user_input, first_year_monthly_AER, AER_after_first_year, monthly_calculations, main
 
 
 #1. check contribution is 10 <= x <= 333
