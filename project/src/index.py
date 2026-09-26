@@ -2,9 +2,9 @@
 import math
 
 
-def user_input():
-    contribution = float(input("1. How much will you be contributing monthly?: "))
-    years = int(input("2. In how many years do you want to buy your first home?: "))
+def user_input(contribution, years):        
+    contribution = float(contribution)
+    years = int(years)
     return contribution, years
 
 def first_year_monthly_AER(contribution):
@@ -28,10 +28,10 @@ def monthly_calculations(contribution, years):
     count = years * 12
     
     for x in range(count):
+        print(balance)
         balance += contribution
         interest = float(first_year_monthly_AER(balance))
         boost = float(gov_boost(contribution))
-        
         if x < 1:
             balance += interest
             balance += boost
@@ -44,12 +44,37 @@ def monthly_calculations(contribution, years):
             balance+= boost
 
     balance -= boost
-    return  print("Final Balance", f"{balance:.2f}")
+    print("Final Balance", f"{balance:.2f}")
+    return  balance
 
 def main():
-    contribution, years = user_input()
+    while True:
+        try:
+            contribution = float(input("1. How much will you be contributing monthly?: "))
+            years = int(input("2. In how many years do you want to buy your first home?: "))
+            if 0 < contribution <= 333 and 0 < years < 40:
+                break
+            print('''
+            Invalid
+
+            Rules 
+            -------------------------------------------------------
+            1. Contributions must be between £1 and £333
+            2. Length of time must be within 1 to 40 years
+            -------------------------------------------------------
+            
+            Try Again
+            ''')
+        except:
+            print('''
+            Invalid input
+                              
+            Try Again
+            ''')
+            return -1
+           
     monthly_calculations(contribution, years)
-    return
+    return contribution, years
 
 
 
