@@ -1,4 +1,4 @@
-from backend.calculation import monthly_calculations
+from backend.calculator.calculation import monthly_calculations
 
 def main():
     while True:
@@ -24,7 +24,7 @@ def main():
                               
             Try Again
             ''')
-            return -1
+            return 0
            
     monthly_calculations(contribution, years)
     return contribution, years
