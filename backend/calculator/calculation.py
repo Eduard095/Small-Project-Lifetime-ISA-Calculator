@@ -23,4 +23,4 @@ def monthly_calculations(contribution, years):
 
     balance -= boost
     print("Final Balance", f"{balance:.2f}")
-    return  balance
+    return  f"{balance:.2f}"
