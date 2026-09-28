@@ -1,18 +1,18 @@
-from typing import Annotated,Literal
+from fastapi import FastAPI
+from pydantic import BaseModel
+from backend.calculator import calculation
 
-from fastapi import FastAPI, Path, Query
-from pydantic import BaseModel, Field
 
 app = FastAPI()
 
+class Items(BaseModel):
+    contribution: float
+    years: int
 
-class FilterParams(BaseModel):
-    limit: int = Field(100, gt=0, le=100)
-    offset: int = Field(0, ge=0)
-    order_by: Literal["created_at", "updated_at"] = "created_at"
-    tags: list[str] = []
-
-
-@app.get("/items/")
-async def read_items(filter_query: Annotated[FilterParams, Query()]):
-    return filter_query
+#This listens for data submissions from client
+#then runs the calcualtions with the given data
+#returns it back in JSON
+@app.post("/calculation")
+def run_calculation(data: Items):
+    result = calculation(data.contribution, data.years)
+    return {"result": result}
