@@ -8,10 +8,15 @@ function App() {
   const [contribution, setContribution] = useState("");
   const [years, setyears] = useState("");
   const [result, setResult] = useState<number | null>(null);
+  const [error, setError] = useState("")
 
   async function calculate() {
+    setResult(null);
+    setError("");
+    try{
+  
     //send a request with fetch and await until API runs the calculator and comes back with an answer
-    const response = await fetch("/calculation", {
+      const response = await fetch("/calculation", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       //convert into JSON text to then convert to actual numbers
@@ -24,8 +29,12 @@ function App() {
 
     if(response.ok){
       setResult(data.result);
+    } else {
+      setError(data.detail[0].msg);
     }
-    console.log("Status: ", response.status, "Data", data )
+  } catch {
+    setError("Could not reach the server. Is the API running?")
+  }
   }
 
   return (
@@ -67,7 +76,7 @@ function App() {
           <p>Years: {years}</p>
 
           <button type="submit">Calculate</button>
-
+        </form>
           {result !== null && (
             <p>
               Estimate balance: £
@@ -77,7 +86,8 @@ function App() {
               })}
             </p>
           )}
-        </form>
+
+          {error && <p className="error">{error}</p>}
 
 
 
