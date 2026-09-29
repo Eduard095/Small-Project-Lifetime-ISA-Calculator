@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from pydantic import BaseModel, Field
 from backend.calculator.calculation import monthly_calculations
 
+#note for me - to start api server: uv run fastapi dev
+#make sure you are in cd backend
 
 app = FastAPI()
 

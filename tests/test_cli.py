@@ -1,5 +1,4 @@
 #testing zone
-import pytest
 from backend.cli import main
 from backend.calculator.interest import first_year_monthly_AER, AER_after_first_year
 from backend.calculator.calculation import monthly_calculations

@@ -1,5 +1,5 @@
-from backend.calculator.interest import first_year_monthly_AER, AER_after_first_year
-from backend.calculator.goverment_boost import gov_boost
+from calculator.interest import first_year_monthly_AER, AER_after_first_year
+from calculator.goverment_boost import gov_boost
 
 def monthly_calculations(contribution, years):
     balance = 0
@@ -22,5 +22,6 @@ def monthly_calculations(contribution, years):
             balance+= boost
 
     balance -= boost
+    print(balance)
     print("Final Balance", f"{balance:.2f}")
     return  f"{balance:.2f}"

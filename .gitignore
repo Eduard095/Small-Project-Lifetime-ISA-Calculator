@@ -1,0 +1,8 @@
+#this is to stop __pychache__ from coming back
+
+__pycache__/
+*.pyc
+.venv/
+node_modules/
+.env
+.pytest_cache/

@@ -1,4 +1,4 @@
-from backend.calculator.calculation import monthly_calculations
+from calculator.calculation import monthly_calculations
 
 def main():
     while True:
