@@ -1,4 +1,5 @@
 import pytest
+
 from backend.calculator.calculation import monthly_calculations
 
 

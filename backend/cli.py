@@ -1,13 +1,18 @@
 from backend.calculator.calculation import monthly_calculations
 
+
 def main():
     while True:
         try:
-            contribution = float(input("1. How much will you be contributing monthly?: "))
-            years = int(input("2. In how many years do you want to buy your first home?: "))
+            contribution = float(
+                input("1. How much will you be contributing monthly?: ")
+            )
+            years = int(
+                input("2. In how many years do you want to buy your first home?: ")
+            )
             if 0 < contribution <= 333 and 0 < years < 40:
                 break
-            print('''
+            print("""
             Invalid
 
             Rules 
@@ -17,22 +22,21 @@ def main():
             -------------------------------------------------------
             
             Try Again
-            ''')
-        except:
-            print('''
+            """)
+        except ValueError:
+            print("""
             Invalid input
                               
             Try Again
-            ''')
+            """)
             return 0
-           
+
     monthly_calculations(contribution, years)
     return contribution, years
 
 
-
 if __name__ == "__main__":
-    print('''
+    print("""
 Welcome to LISA calulator: 
 Please provide the following
 
@@ -41,5 +45,5 @@ Please provide the following
 2. In how many years do you want to buy your first home?
 -------------------------------------------------------
 
-''')
+""")
     main()
