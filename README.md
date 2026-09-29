@@ -9,7 +9,7 @@ This project estimates how much a Lifetime ISA (LISA) could be worth by the time
 
 It then calculates your estimated balance, including the 25% government bonus and interest.
 
-> **Note:** This is an illustrative estimate only, not financial advice. It currently supports monthly contributions only.
+> **Note:** This is an illustrative estimate only and monthly contributions only.
 
 ## How it works
 
