@@ -1,13 +1,29 @@
-# Small-Project-Lifetime-ISA-Calculator
-If you're a first time buyer for a house, this calculator is for you!
+# Lifetime ISA Calculator
 
-This is a small Lifetime ISA calculator project to calculate how much your LISA could be worth based
+If you're saving for your first home, this calculator is for you!
 
-1. How much do you want save each month
-2. In how many years do you want to buy your first home
-   
-Once these are given, you will have a rough estimate of how much you will have by the end of however many years you planned to save.
+This project estimates how much a Lifetime ISA (LISA) could be worth by the time you buy your first home. You enter two things:
 
-* this is a illustrative estimate
+1. How much you want to save each month
+2. How many years until you plan to buy
 
-FYI for now this only has the option to save monthly
+It then calculates your estimated balance, including the 25% government bonus and interest.
+
+> **Note:** This is an illustrative estimate only, not financial advice. It currently supports monthly contributions only.
+
+## How it works
+
+The calculation logic is written in Python and exposed through a REST API built with FastAPI:
+
+The API validates all input before any calculation runs. Contributions must be between £0 and £333.33 a month (the £4,000 annual LISA limit), and the savings period must be between 1 and 32 years. Invalid input is rejected with a clear error message explaining which field is wrong.
+
+## Roadmap
+
+- [x] Calculation logic and command-line version - Python
+- [x] REST API with input validation - fastAPI
+- [x] Automated API tests
+- [ ] React front end - TypeScript
+- [ ] Save and compare savings scenarios (database)
+- [ ] Docker setup
+- [ ] Continuous integration with GitHub Actions
+- [ ] Deploy online
