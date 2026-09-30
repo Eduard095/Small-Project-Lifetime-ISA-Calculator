@@ -4,7 +4,6 @@ import './App.css'
 
 function App() {
   //this gives the component a memory//
-  const [count, setCount] = useState(0)
   const [contribution, setContribution] = useState("");
   const [years, setyears] = useState("");
   const [result, setResult] = useState<number | null>(null);
@@ -39,16 +38,12 @@ function App() {
 
   return (
     <>
-      <section id="center">
-        <div className="hero">
+      <main>
+        <header>
           <img src={Logo} className="logo" alt="Lifetime ISA Calculator logo" />
-        </div>
-        <div>
           <h1>Lifetime ISA Calculator</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
+        </header>
+    
         <form
         onSubmit={(event) => {
           event.preventDefault();
@@ -77,29 +72,24 @@ function App() {
 
           <button type="submit">Calculate</button>
         </form>
+        <section aria-live="polite">
+
           {result !== null && (
-            <p>
-              Estimate balance: £
+            <div className="result">
+              <span className="result-label">Estimated balance</span>
+              <span className="result-amount">
+              £
               {result.toLocaleString("en-GB", {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,
               })}
-            </p>
+              </span>
+            </div>
           )}
 
-          {error && <p className="error">{error}</p>}
-
-
-
-        
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+        {error && <p className="error">{error}</p>}
+        </section>
+      </main>
     </>
   )
 }
