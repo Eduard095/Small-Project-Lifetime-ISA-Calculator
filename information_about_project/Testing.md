@@ -30,3 +30,10 @@ Test case
 So essnetially, Boundary cases, Invalid input and checking if functions are doing what they suppose too.
 
 
+![alt text](image-1.png)
+
+lint: Like Ruff, this lists problems with the file and line number, this would detect for example unused imports
+
+npm run build: This runs TypeScript type checker over the whole project, then builds the optimised version of the site that would be deployed
+
+this was done before the docker stage
