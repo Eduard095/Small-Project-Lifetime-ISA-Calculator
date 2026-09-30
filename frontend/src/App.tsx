@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import Logo from './assets/Eduardo_Bank_logo.png'
+import Logo from './assets/Eduardo_Bank_logo.jpg'
 import './App.css'
+import AquisitionChart from './AcquisitionsChart';
 
 function App() {
   //this gives the component a memory//
@@ -89,7 +90,13 @@ function App() {
 
         {error && <p className="error">{error}</p>}
         </section>
-      </main>
+        
+          <div className='chart'>
+            <AquisitionChart />
+          </div>
+        
+
+        </main>
     </>
   )
 }
