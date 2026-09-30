@@ -22,8 +22,10 @@ The API validates all input before any calculation runs. Contributions must be b
 - [x] Calculation logic and command-line version - Python
 - [x] REST API with input validation - fastAPI
 - [x] Automated API tests
-- [ ] React front end - TypeScript
+- [x] React front end - TypeScript
 - [ ] Save and compare savings scenarios (database)
 - [ ] Docker setup
 - [ ] Continuous integration with GitHub Actions
 - [ ] Deploy online
+
+<img width="1894" height="856" alt="image" src="https://github.com/user-attachments/assets/4b3f72ef-3a9d-401a-9604-afbd0eff1274" />
