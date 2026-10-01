@@ -1,6 +1,14 @@
 from backend.calculator.goverment_boost import gov_boost
 from backend.calculator.interest import AER_after_first_year, first_year_monthly_AER
 
+contribution_with_interest_data = []
+contribution_without_interest_data = []
+
+def data_with_interest_return():
+    return contribution_with_interest_data
+
+def data_without_interest_return():
+    return contribution_without_interest_data
 
 def monthly_calculations(contribution, years):
     balance = 0
@@ -18,7 +26,8 @@ def monthly_calculations(contribution, years):
             after_interest = float(AER_after_first_year(balance))
             balance += after_interest
             balance += boost
-
+        contribution_without_interest_data(contribution)
+        contribution_with_interest_data.append(balance)
     balance -= boost
     print(balance)
     print("Final Balance", f"{balance:.2f}")

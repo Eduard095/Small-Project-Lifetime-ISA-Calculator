@@ -10,23 +10,34 @@ import {
 
 import {Line} from "react-chartjs-2"
 
-
 ChartJS.register(CategoryScale,LinearScale,LineElement, PointElement, Tooltip, Legend)
 
+export type ChartResult = {
+    labels: string[];
+    with_interest: number[];
+    without_interest: number[];
+};
 
-const data = {
-    labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+type Props = { result: ChartResult}
+
+
+export default function AquisitionChart({ result }: Props) {
+    const data = {
+    labels: result.labels,
     datasets: [
         {
-            label: "Aquisition by month",
-            data: [50,100,150, 200, 250, 300, 350, 400, 450, 500, 550, 600],
+            label: "contribution with interes",
+            data: result.with_interest,
+            borderColor: "#ee5519",
+            backgroundColor: "#ee5519",
+        },
+         {
+            label: "contribution without interest",
+            data: result.without_interest,
             borderColor: "#2563eb",
             backgroundColor: "#2563eb",
         },
     ],
 };
-
-
-export default function AquisitionChart() {
     return <Line data={data} />;
 }

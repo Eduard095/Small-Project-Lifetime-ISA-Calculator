@@ -1,14 +1,15 @@
 import { useState } from 'react'
 import Logo from './assets/Eduardo_Bank_logo.jpg'
 import './App.css'
-import AquisitionChart from './AcquisitionsChart';
+import AquisitionChart, { type ChartResult } from "./AcquisitionsChart";
 
 function App() {
   //this gives the component a memory//
   const [contribution, setContribution] = useState("");
   const [years, setyears] = useState("");
-  const [result, setResult] = useState<number | null>(null);
+  const [result, setResult] = useState<ChartResult | null>(null);
   const [error, setError] = useState("")
+  
 
   async function calculate() {
     setResult(null);
@@ -80,7 +81,7 @@ function App() {
               <span className="result-label">Estimated balance</span>
               <span className="result-amount">
               £
-              {result.toLocaleString("en-GB", {
+              {result.with_interest[result.with_interest.length -1].toLocaleString("en-GB", {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,
               })}
@@ -92,7 +93,7 @@ function App() {
         </section>
         
           <div className='chart'>
-            <AquisitionChart />
+            {result && <AquisitionChart result={result}/>}
           </div>
         
 
