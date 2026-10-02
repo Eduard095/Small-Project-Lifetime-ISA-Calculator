@@ -7,8 +7,16 @@ function App() {
   //this gives the component a memory//
   const [contribution, setContribution] = useState("");
   const [years, setyears] = useState("");
-  const [result, setResult] = useState<ChartResult | null>(null);
+  const [result, setResult] = useState<CalculationResult | null>(null);
   const [error, setError] = useState("")
+  type CalculationResult = {
+    result: number;
+    labels: string[];
+    with_interest: number[];
+    without_interest: number[];
+    interest_only: number[];
+    boost_only: number[];
+  }
   
 
   async function calculate() {
@@ -29,7 +37,7 @@ function App() {
     const data = await response.json();
 
     if(response.ok){
-      setResult(data.result);
+      setResult(data);
     } else {
       setError(data.detail[0].msg);
     }
@@ -69,9 +77,6 @@ function App() {
           onChange={(event => setyears(event.target.value))}
           />
         </label>
-         <p>Contribution: {contribution}</p>
-          <p>Years: {years}</p>
-
           <button type="submit">Calculate</button>
         </form>
         <section aria-live="polite">
@@ -81,7 +86,7 @@ function App() {
               <span className="result-label">Estimated balance</span>
               <span className="result-amount">
               £
-              {result.with_interest[result.with_interest.length -1].toLocaleString("en-GB", {
+              {result.result.toLocaleString("en-GB", {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,
               })}
@@ -91,15 +96,40 @@ function App() {
 
         {error && <p className="error">{error}</p>}
         </section>
-        
+          <p>*Hover over the line to see data</p>
           <div className='chart'>
             {result && <AquisitionChart result={result}/>}
           </div>
-        
-
+        {result !== null && (
+          <div className='table'>
+            <table>
+              <thead>
+                <tr>
+                  <th>Month</th>
+                  <th>Contribution</th>
+                  <th>Goverment Boost</th>
+                  <th>Accrued Interest</th>
+                  <th>Account end of the month</th>
+                </tr>
+              </thead>
+              <tbody>
+                {result.labels.map((label, i) => (
+                  <tr key={label}>
+                    <td>{label}</td>
+                    <td>£{result.without_interest[i].toFixed(2)}</td>
+                    <td>£{result.boost_only[i].toFixed(2)}</td>
+                    <td>£{result.interest_only[i].toFixed(2)}</td>
+                    <td>£{result.with_interest[i].toFixed(2)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
         </main>
     </>
   )
 }
+// .map: loops through every label and returns one table for each i//
 
 export default App

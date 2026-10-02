@@ -23,10 +23,10 @@ type Props = { result: ChartResult}
 
 export default function AquisitionChart({ result }: Props) {
     const data = {
-    labels: result.labels,
+    labels: result.labels,          
     datasets: [
         {
-            label: "contribution with interes",
+            label: "contribution with interest",
             data: result.with_interest,
             borderColor: "#ee5519",
             backgroundColor: "#ee5519",
