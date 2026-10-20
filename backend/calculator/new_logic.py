@@ -4,89 +4,94 @@
 class LifetimeCalculator:
 
     GOV_BOOST = 0.25
-    FIRT_YEAR_AER = 0.0445
-    SUBSEQUENT_AER = 0.028
-
-    account_balance = 0.0
-    contribution_balance = 0.0
-    interest_balance = 0.0
-    boost_balance = 0.0
-    
-    accrued_contribution = []
-    accrued_interest = []
-    accrued_boost = []
-    accured_contribution_with_interest_data = []
-    accrued_contribution_without_interest_data = []
-
+    FIRST_YEAR_AER = 0.0445
+    SUBSEQUENT_AER = 0.0280
 
     def __init__(self, contribution, years, frequency):
         self.contribution = contribution
         self.years =  years
+        self.frequency = frequency
 
     def govermentBoost(self):
         return self.contribution * self.GOV_BOOST
 
-    def firstYear_AER(self):
+    def firstYear_AER(self, balance):
         # Geometric mean, because interest goews exponentially, so we must use
         # geometric breakdown, which extracts the fractional power (1/12)
-        x = 1 + (self.FIRT_YEAR_AER)
+        x = 1 + (self.FIRST_YEAR_AER)
         AER = pow(x, 1 / 12) - 1
-        return self.account_balance * AER
+        return balance * AER
 
-    def subsequent_AER(self):
+    def subsequent_AER(self, balance):
         x = 1 + (self.SUBSEQUENT_AER)
         AER = pow(x, 1 / 12) - 1
-        return self.account_balance * AER
+        return balance * AER
 
     def calculate_monthly(self):
-
+        account_balance = 0.0
+        contribution_balance = 0.0
+        interest_balance = 0.0
+        boost_balance = 0.0
+        
+        accrued_contribution = []
+        accrued_interest = []
+        accrued_boost = []
+        accured_contribution_with_interest_data = []
+        accrued_contribution_without_interest_data = []
+        """
+        Month x > 1
+        1. contribution is added to balance
+        2. contribution GOV_BOOST calculated and added to balance
+        3. (contribution+GOV_BOOST) interest calculated and added to balance
+        """
         months = (self.years * 12) + 1
-        boost = float(self.govermentBoost())
+        boost = self.govermentBoost()
 
         for month in range(1, months):
-            self.account_balance += self.contribution
-            self.contribution_balance += self.contribution
-            self.accrued_contribution.append(self.contribution_balance)
-            self.boost_balance += boost
-            self.accrued_boost.append(self.boost_balance)
+            account_balance += self.contribution
 
+            contribution_balance += self.contribution
+            accrued_contribution.append(contribution_balance)
+
+        
             if month == 1:
-                self.account_balance += float(self.firstYear_AER())
-                self.accrued_interest.append(self.firstYear_AER())
+                firstYear_interest = self.firstYear_AER(account_balance)
+                account_balance += firstYear_interest
+                accrued_interest.append(firstYear_interest)
                 
 
             elif month <= 12:
-                self.account_balance += boost
-                self.account_balance += float(self.firstYear_AER())
-                self.accrued_interest.append(self.firstYear_AER())
+                account_balance += boost
+                boost_balance += boost
+                firstYear_interest = self.firstYear_AER(account_balance)
+                account_balance += firstYear_interest
+                accrued_interest.append(firstYear_interest)
 
             else:
-                self.account_balance += boost
-                self.account_balance += float(self.subsequent_AER())
-                self.accrued_interest.append(self.subsequent_AER())
+                account_balance += boost
+                boost_balance += boost
+                subsequent_interest = self.subsequent_AER(account_balance)
+                account_balance += subsequent_interest
+                accrued_interest.append(subsequent_interest)
 
-            print(self.account_balance)
-            self.accured_contribution_with_interest_data.append(self.account_balance)
-            self.accrued_contribution_without_interest_data.append(self.contribution_balance)
+            print(account_balance)
+            accrued_boost.append(boost_balance)
+            accured_contribution_with_interest_data.append(account_balance)
+            accrued_contribution_without_interest_data.append(contribution_balance)
 
-        print ("final account_balance", self.account_balance)
-        print(self.accrued_contribution)
-        print(self.accrued_interest)
-        print(self.accrued_boost)
-        print(self.accured_contribution_with_interest_data)
-        print(self.accrued_contribution_without_interest_data)
+        print ("final account_balance", account_balance)
+    
+        print(accrued_boost)
+        print(accured_contribution_with_interest_data)
+        print(accrued_contribution_without_interest_data)
+        print(accrued_interest)
         
-        return (self.accrued_contribution, 
-                self.accrued_interest, 
-                self.accrued_boost,
-                self.accured_contribution_with_interest_data,
-                self.accrued_contribution_without_interest_data)
+        return (accrued_contribution, 
+                accrued_interest, 
+                accrued_boost,
+                accured_contribution_with_interest_data,
+                accrued_contribution_without_interest_data)
         
-    def calculate_yearly(self,contribution, years):
-        months = self.years * 12
-        self.account_balance += float(self.govermentBoost(self.contribution)) * (months - 2)
-        pass
 
-
-#test1 = LifetimeCalculator(contribution=50,years=1, frequency=1)
-#result = test1.calculate_monthly()
+test1 = LifetimeCalculator(contribution=50,years=1, frequency=1)
+test1.calculate_monthly()
