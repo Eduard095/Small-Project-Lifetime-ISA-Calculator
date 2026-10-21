@@ -14,8 +14,8 @@ ChartJS.register(CategoryScale,LinearScale,LineElement, PointElement, Tooltip, L
 
 export type ChartResult = {
     labels: string[];
-    with_interest: number[];
-    without_interest: number[];
+    with_interest_data: number[];
+    without_interest_data: number[];
 };
 
 type Props = { result: ChartResult}
@@ -27,13 +27,13 @@ export default function AquisitionChart({ result }: Props) {
     datasets: [
         {
             label: "contribution with interest",
-            data: result.with_interest,
+            data: result.with_interest_data,
             borderColor: "#ee5519",
             backgroundColor: "#ee5519",
         },
          {
             label: "contribution without interest",
-            data: result.without_interest,
+            data: result.without_interest_data,
             borderColor: "#2563eb",
             backgroundColor: "#2563eb",
         },

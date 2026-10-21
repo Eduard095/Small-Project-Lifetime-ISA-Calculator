@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Logo from './assets/Eduardo_Bank_logo.jpg'
 import './App.css'
-import AquisitionChart, { type ChartResult } from "./AcquisitionsChart";
+import AquisitionChart from "./AcquisitionsChart";
 
 function App() {
   //this gives the component a memory//
@@ -12,10 +12,10 @@ function App() {
   type CalculationResult = {
     result: number;
     labels: string[];
-    with_interest: number[];
-    without_interest: number[];
-    interest_only: number[];
-    boost_only: number[];
+    with_interest_data: number[];
+    without_interest_data: number[];
+    accrued_interest: number[];
+    accrued_boost: number[];
   }
   
 
@@ -116,10 +116,10 @@ function App() {
                 {result.labels.map((label, i) => (
                   <tr key={label}>
                     <td>{label}</td>
-                    <td>£{result.without_interest[i].toFixed(2)}</td>
-                    <td>£{result.boost_only[i].toFixed(2)}</td>
-                    <td>£{result.interest_only[i].toFixed(2)}</td>
-                    <td>£{result.with_interest[i].toFixed(2)}</td>
+                    <td>£{result.without_interest_data[i].toFixed(2)}</td>
+                    <td>£{result.accrued_boost[i].toFixed(2)}</td>
+                    <td>£{result.accrued_interest[i].toFixed(2)}</td>
+                    <td>£{result.with_interest_data[i].toFixed(2)}</td>
                   </tr>
                 ))}
               </tbody>

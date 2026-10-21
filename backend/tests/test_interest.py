@@ -1,6 +1,6 @@
 import pytest
 
-from backend.calculator.interest import AER_after_first_year, first_year_monthly_AER
+from backend.calculator.calculation import AER_after_first_year, first_year_monthly_AER
 
 
 # testing out the if the mathematical formula to calculate AER for the first year is correct
